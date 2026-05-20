@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rowan Wolfson — About</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Josefin+Sans:wght@100;300&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --linen: #f4f0e8;
+    --mist: #dce8e4;
+    --sage: #8fa898;
+    --slate: #5c7070;
+    --deep: #2a3a3a;
+    --pale-blue: #c8d8d8;
+    --ink: #1a2828;
+  }
+  html { scroll-behavior: smooth; }
+  body { background: var(--linen); color: var(--ink); font-family: 'Josefin Sans', sans-serif; font-weight: 300; cursor: none; overflow-x: hidden; }
+
+  #daisy-cursor { position: fixed; pointer-events: none; z-index: 9999; transform: translate(-50%, -50%); width: 24px; height: 24px; transition: transform 0.15s; }
+  #daisy-cursor.click { transform: translate(-50%,-50%) scale(1.4) rotate(30deg); }
+  #daisy-cursor .petal-el { transition: fill 0.3s; }
+  #daisy-cursor.pink .petal-el { fill: #ffb7d5 !important; }
+  #daisy-cursor.pink .petal-el:nth-child(even) { fill: #ff8fb3 !important; }
+  #daisy-cursor.pink .center1 { fill: #ff6b9d !important; }
+  #daisy-cursor.pink .center2 { fill: #e0457a !important; }
+  .petal { position: fixed; pointer-events: none; z-index: 9998; width: 10px; height: 16px; border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%; animation: petalFly 0.9s ease-out forwards; }
+  @keyframes petalFly {
+    0%   { opacity: 1; transform: translate(0,0) rotate(var(--r)) scale(1); }
+    100% { opacity: 0; transform: translate(var(--tx), var(--ty)) rotate(calc(var(--r) + 360deg)) scale(0.3); }
+  }
+
+  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; justify-content: space-between; align-items: center; padding: 22px 40px; background: rgba(244,240,232,0.92); backdrop-filter: blur(8px); }
+  .nav-name { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-style: italic; font-size: 22px; letter-spacing: 0.04em; color: var(--ink); text-decoration: none; }
+  .nav-links { display: flex; gap: 32px; }
+  .nav-links a { font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--slate); text-decoration: none; transition: opacity 0.2s; }
+  .nav-links a:hover { opacity: 0.6; }
+  .nav-links a.active { color: var(--ink); border-bottom: 1px solid var(--ink); padding-bottom: 2px; }
+
+  .about-hero {
+    position: relative; height: 55vh; overflow: hidden;
+    display: flex; align-items: flex-end; padding: 0 40px 60px;
+  }
+  .about-hero-bg {
+    position: absolute; inset: 0;
+    background-image: url('portrait.png');
+    background-size: cover; background-position: center 30%;
+    filter: saturate(0.4) brightness(0.55);
+  }
+  .about-hero-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(26,40,40,0.75) 0%, transparent 70%); }
+  .about-hero-content { position: relative; z-index: 2; }
+  .about-eyebrow { font-size: 10px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--pale-blue); margin-bottom: 12px; }
+  .about-hero-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(42px, 6vw, 80px); font-weight: 300; font-style: italic; color: var(--linen); line-height: 1; }
+
+  .about-body { max-width: 760px; margin: 0 auto; padding: 80px 40px 120px; }
+
+  .statement-block { margin-bottom: 52px; }
+  .statement-block p {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 21px; font-weight: 300; line-height: 1.85;
+    color: var(--deep);
+  }
+  .statement-block p em { font-style: italic; color: var(--slate); }
+
+  .statement-divider { width: 48px; height: 1px; background: var(--pale-blue); margin: 48px 0; }
+
+  .mediums-label { font-size: 10px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--sage); margin-bottom: 20px; }
+  .mediums-list {
+    display: flex; flex-wrap: wrap; gap: 10px;
+  }
+  .medium-tag {
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--slate);
+    border: 0.5px solid var(--sage);
+    padding: 7px 16px;
+    clip-path: polygon(6px 0%, 100% 0%, calc(100% - 6px) 100%, 0% 100%);
+  }
+
+  .education-block { margin-top: 60px; }
+  .education-label { font-size: 10px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--sage); margin-bottom: 24px; }
+  .education-item { margin-bottom: 28px; }
+  .education-item h3 { font-family: 'Cormorant Garamond', serif; font-size: 20px; font-weight: 300; font-style: italic; color: var(--deep); margin-bottom: 4px; }
+  .education-item p { font-size: 12px; letter-spacing: 0.1em; color: var(--sage); text-transform: uppercase; }
+
+  .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.8s ease, transform 0.8s ease; }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  @media (max-width: 600px) {
+    nav { padding: 18px 20px; }
+    .about-hero { padding: 0 20px 40px; }
+    .about-body { padding: 60px 20px 80px; }
+  }
+</style>
+</head>
+<body>
+
+<svg id="daisy-cursor" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
+  <g transform="translate(20,20)">
+    <ellipse class="petal-el" cx="0" cy="-9" rx="3.5" ry="6" fill="#fef0f5" transform="rotate(0)"/>
+    <ellipse class="petal-el" cx="0" cy="-9" rx="3.5" ry="6" fill="#fde8f2" transform="rotate(40)"/>
+    <ellipse class="petal-el" cx="0" cy="-9" rx="3.5" ry="6" fill="#fef0f5" transform="rotate(80)"/>
+    <ellipse class="petal-el" cx="0" cy="-9" rx="3.5" ry="6" fill="#fde8f2" transform="rotate(120)"/>
+    <ellipse class="petal-el" cx="0" cy="-9" rx="3.5" ry="6" fill="#fef0f5" transform="rotate(160)"/>
+    <ellipse class="petal-el" cx="0" cy="-9" rx="3.5" ry="6" fill="#fde8f2" transform="rotate(200)"/>
+    <ellipse class="petal-el" cx="0" cy="-9" rx="3.5" ry="6" fill="#fef0f5" transform="rotate(240)"/>
+    <ellipse class="petal-el" cx="0" cy="-9" rx="3.5" ry="6" fill="#fde8f2" transform="rotate(280)"/>
+    <ellipse class="petal-el" cx="0" cy="-9" rx="3.5" ry="6" fill="#fef0f5" transform="rotate(320)"/>
+    <circle class="center1" cx="0" cy="0" r="5" fill="#f5d76e"/>
+    <circle class="center2" cx="0" cy="0" r="3" fill="#e8c44a"/>
+  </g>
+</svg>
+
+<nav>
+  <a class="nav-name" href="index.html">Rowan Wolfson</a>
+  <div class="nav-links">
+    <a href="index.html">Works</a>
+    <a href="about.html" class="active">About</a>
+    <a href="index.html#contact">Contact</a>
+  </div>
+</nav>
+
+<div class="about-hero">
+  <div class="about-hero-bg"></div>
+  <div class="about-hero-overlay"></div>
+  <div class="about-hero-content">
+    <p class="about-eyebrow">artist statement</p>
+    <h1 class="about-hero-title">Rowan Wolfson</h1>
+  </div>
+</div>
+
+<div class="about-body">
+
+  <div class="statement-block reveal">
+    <p>My work centers around the human figure, memory, and the layering of collected imagery. Through portraiture and figurative compositions, I explore the emotional weight people carry and the <em>fragmented ways identity is constructed and remembered.</em> I am drawn to creating work that feels intimate yet unsettled, combining observation with reconstruction.</p>
+  </div>
+
+  <div class="statement-block reveal">
+    <p>My understanding of art as expression has been fundamentally shaped by my time volunteering as a studio assistant for adult artists with disabilities and special needs. Working alongside these artists changed the way I see making — as something that exists outside of technical perfection or institutional validation, and closer to <em>pure freedom.</em> Watching people use image-making to communicate what language cannot reach expanded my sense of what art can hold and who it belongs to.</p>
+  </div>
+
+  <div class="statement-block reveal">
+    <p>I work across a wide range of materials, including oil paint, oil pastel, pen, ceramics, glassblowing, silversmithing, blacksmithing, and mixed-media installation. Rather than limiting myself to a single medium, I allow <em>materials to guide the process,</em> often incorporating found objects and collected elements into my work. I am interested in the physicality of making — how texture, weight, and surface can hold emotion and history.</p>
+  </div>
+
+  <div class="statement-block reveal">
+    <p>A large part of my process begins with collecting imagery. I archive hundreds of reference photographs from Pinterest, personal photography, and everyday encounters, collaging them together to construct compositions that <em>blur memory and invention.</em> These references become fragments that I rearrange into portraits and spaces that feel simultaneously familiar and distorted.</p>
+  </div>
+
+  <div class="statement-divider reveal"></div>
+
+  <div class="mediums-label reveal">Materials</div>
+  <div class="mediums-list reveal">
+    <span class="medium-tag">Oil Paint</span>
+    <span class="medium-tag">Oil Pastel</span>
+    <span class="medium-tag">Pen & Ink</span>
+    <span class="medium-tag">Ceramics</span>
+    <span class="medium-tag">Glassblowing</span>
+    <span class="medium-tag">Silversmithing</span>
+    <span class="medium-tag">Blacksmithing</span>
+    <span class="medium-tag">Mixed Media</span>
+    <span class="medium-tag">Installation</span>
+  </div>
+
+  <div class="statement-divider reveal"></div>
+
+  <div class="education-block reveal">
+    <div class="education-label">Education</div>
+    <div class="education-item">
+      <h3>School of the Art Institute of Chicago</h3>
+      <p>BFA · Incoming Fall 2025 · Sculpture, Metalwork & Installation</p>
+    </div>
+    <div class="education-item">
+      <h3>California College of the Arts</h3>
+      <p>Pre-College Program</p>
+    </div>
+    <div class="education-item">
+      <h3>College of Marin</h3>
+      <p>Figure Drawing & Composition</p>
+    </div>
+    <div class="education-item">
+      <h3>Colorado Rocky Mountain School</h3>
+      <p>College-level Art Courses</p>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  const daisy = document.getElementById('daisy-cursor');
+  document.addEventListener('mousemove', e => {
+    daisy.style.left = e.clientX + 'px';
+    daisy.style.top = e.clientY + 'px';
+    const el = document.elementFromPoint(e.clientX, e.clientY);
+    if (el) {
+      const bg = window.getComputedStyle(el).backgroundColor;
+      const match = bg.match(/\d+/g);
+      if (match) {
+        const [r, g, b] = match.map(Number);
+        daisy.classList.toggle('pink', (r * 299 + g * 587 + b * 114) / 1000 > 200);
+      }
+    }
+  });
+
+  const petalColors = ['#ffb7c5','#ffd6e0','#ffaec9','#f9c6d0','#c9b1ff','#b5d8ff','#a8e6cf','#ffd3b6','#fff0a0','#f7c5e3','#d4f0c0','#c5e8ff','#ffcba4','#e8c5ff','#b8f0e0'];
+  document.addEventListener('click', e => {
+    for (let i = 0; i < 18; i++) {
+      const petal = document.createElement('div');
+      petal.className = 'petal';
+      const angle = (i / 18) * 360 + Math.random() * 20;
+      const dist = 60 + Math.random() * 80;
+      const rad = angle * Math.PI / 180;
+      petal.style.cssText = `left:${e.clientX}px;top:${e.clientY}px;background:${petalColors[Math.floor(Math.random()*petalColors.length)]};--r:${angle}deg;--tx:${Math.cos(rad)*dist}px;--ty:${Math.sin(rad)*dist}px;transform-origin:center bottom;margin-left:-5px;margin-top:-8px;`;
+      document.body.appendChild(petal);
+      setTimeout(() => petal.remove(), 950);
+    }
+    daisy.classList.add('click');
+    setTimeout(() => daisy.classList.remove('click'), 200);
+  });
+
+  const reveals = document.querySelectorAll('.reveal');
+  new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { setTimeout(() => e.target.classList.add('visible'), 80); } });
+  }, { threshold: 0.1 }).observe(document.body);
+
+  document.querySelectorAll('.reveal').forEach(el => {
+    new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) { setTimeout(() => e.target.classList.add('visible'), 80); } });
+    }, { threshold: 0.1 }).observe(el);
+  });
+</script>
+</body>
+</html>
