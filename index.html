@@ -8,19 +8,9 @@
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Josefin+Sans:wght@100;300&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-  :root {
-    --linen: #f4f0e8;
-    --mist: #dce8e4;
-    --sage: #8fa898;
-    --slate: #5c7070;
-    --deep: #2a3a3a;
-    --pale-blue: #c8d8d8;
-    --ink: #1a2828;
-  }
+  :root { --linen: #f4f0e8; --mist: #dce8e4; --sage: #8fa898; --slate: #5c7070; --deep: #2a3a3a; --pale-blue: #c8d8d8; --ink: #1a2828; }
   html { scroll-behavior: smooth; }
   body { background: var(--linen); color: var(--ink); font-family: 'Josefin Sans', sans-serif; font-weight: 300; cursor: none; overflow-x: hidden; }
-
-  /* DAISY CURSOR */
   #daisy-cursor { position: fixed; pointer-events: none; z-index: 9999; transform: translate(-50%, -50%); width: 24px; height: 24px; transition: transform 0.15s; }
   #daisy-cursor.click { transform: translate(-50%,-50%) scale(1.4) rotate(30deg); }
   #daisy-cursor .petal-el { transition: fill 0.3s; }
@@ -28,15 +18,8 @@
   #daisy-cursor.pink .petal-el:nth-child(even) { fill: #ff8fb3 !important; }
   #daisy-cursor.pink .center1 { fill: #ff6b9d !important; }
   #daisy-cursor.pink .center2 { fill: #e0457a !important; }
-
-  /* PETAL PARTICLE */
   .petal { position: fixed; pointer-events: none; z-index: 9998; width: 10px; height: 16px; border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%; animation: petalFly 0.9s ease-out forwards; }
-  @keyframes petalFly {
-    0%   { opacity: 1; transform: translate(0,0) rotate(var(--r)) scale(1); }
-    100% { opacity: 0; transform: translate(var(--tx), var(--ty)) rotate(calc(var(--r) + 360deg)) scale(0.3); }
-  }
-
-  /* NAV */
+  @keyframes petalFly { 0% { opacity:1; transform:translate(0,0) rotate(var(--r)) scale(1); } 100% { opacity:0; transform:translate(var(--tx),var(--ty)) rotate(calc(var(--r) + 360deg)) scale(0.3); } }
   nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; justify-content: space-between; align-items: center; padding: 22px 40px; background: transparent; transition: background 0.4s; }
   nav.scrolled { background: rgba(244,240,232,0.92); backdrop-filter: blur(8px); }
   .nav-name { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-style: italic; font-size: 22px; letter-spacing: 0.04em; color: var(--linen); transition: color 0.4s; text-decoration: none; }
@@ -45,8 +28,6 @@
   .nav-links a { font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(244,240,232,0.85); text-decoration: none; transition: color 0.4s, opacity 0.2s; }
   nav.scrolled .nav-links a { color: var(--slate); }
   .nav-links a:hover { opacity: 0.6; }
-
-  /* HERO */
   .hero { position: relative; height: 100vh; display: flex; flex-direction: column; justify-content: flex-end; align-items: flex-start; padding: 0 40px 60px; overflow: hidden; }
   .hero-bg { position: absolute; inset: 0; background-image: url('portrait.png'); background-size: cover; background-position: center 20%; filter: saturate(0.6) brightness(0.65); transform: scale(1.05); transition: transform 8s ease; }
   .hero-bg.loaded { transform: scale(1); }
@@ -57,77 +38,43 @@
   .hero-title em { font-style: italic; color: var(--pale-blue); }
   .hero-scroll { font-size: 10px; letter-spacing: 0.25em; text-transform: uppercase; color: var(--pale-blue); opacity: 0.7; display: flex; align-items: center; gap: 12px; }
   .hero-scroll::before { content: ''; display: block; width: 40px; height: 1px; background: var(--pale-blue); }
-
-  /* INTRO */
   .intro { padding: 100px 40px; max-width: 640px; }
   .intro p { font-family: 'Cormorant Garamond', serif; font-size: 26px; font-weight: 300; line-height: 1.6; color: var(--deep); }
   .intro p em { font-style: italic; color: var(--slate); }
-
-  /* SECTION DIVIDER */
-  .medium-divider {
-    position: relative; height: 340px; overflow: hidden; margin: 40px 0 0;
-  }
-  .medium-divider-bg {
-    position: absolute; inset: -20px;
-    background-size: cover; background-position: center;
-    filter: saturate(0.5) brightness(0.55) sepia(0.2);
-  }
-  .medium-divider-overlay {
-    position: absolute; inset: 0;
-    background: rgba(26,40,40,0.35);
-    display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 10px;
-  }
-  .medium-divider-title {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(32px, 5vw, 60px); font-weight: 300; font-style: italic;
-    color: var(--linen); letter-spacing: 0.06em;
-    text-shadow: 0 2px 30px rgba(26,40,40,0.5);
-  }
-  .medium-divider-sub {
-    font-size: 10px; letter-spacing: 0.3em; text-transform: uppercase;
-    color: var(--pale-blue); opacity: 0.8;
-  }
-
-  /* GALLERY */
+  .medium-divider { position: relative; height: 340px; overflow: hidden; margin: 40px 0 0; }
+  .medium-divider-bg { position: absolute; inset: -20px; background-size: cover; background-position: center; filter: saturate(0.5) brightness(0.55) sepia(0.2); }
+  .medium-divider-overlay { position: absolute; inset: 0; background: rgba(26,40,40,0.35); display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 10px; }
+  .medium-divider-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(32px, 5vw, 60px); font-weight: 300; font-style: italic; color: var(--linen); letter-spacing: 0.06em; text-shadow: 0 2px 30px rgba(26,40,40,0.5); }
+  .medium-divider-sub { font-size: 10px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--pale-blue); opacity: 0.8; }
   .gallery { padding: 2px 40px 60px; }
   .gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 2px; }
-
-  /* ART CARD */
   .art-card { position: relative; overflow: hidden; aspect-ratio: 3/4; background: var(--mist); }
   .art-card img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.8s cubic-bezier(0.25,0.46,0.45,0.94), filter 0.5s; filter: saturate(0.85); }
   .art-card:hover img { transform: scale(1.04); filter: saturate(1.1); }
   .card-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(26,40,40,0.88) 0%, transparent 50%); opacity: 0; transition: opacity 0.4s; display: flex; flex-direction: column; justify-content: flex-end; padding: 32px 28px; }
   .art-card:hover .card-overlay { opacity: 1; }
-  .card-title { font-family: 'Cormorant Garamond', serif; font-size: 28px; font-weight: 300; font-style: italic; color: var(--linen); margin-bottom: 4px; transform: translateY(10px); transition: transform 0.4s; }
+  .card-title { font-family: 'Cormorant Garamond', serif; font-size: 26px; font-weight: 300; font-style: italic; color: var(--linen); margin-bottom: 4px; transform: translateY(10px); transition: transform 0.4s; }
   .art-card:hover .card-title { transform: translateY(0); }
   .card-meta { font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--pale-blue); margin-bottom: 20px; transform: translateY(10px); transition: transform 0.4s 0.05s; }
   .art-card:hover .card-meta { transform: translateY(0); }
-  .card-btn { display: inline-flex; align-items: center; gap: 10px; background: var(--linen); color: var(--ink); text-decoration: none; font-family: 'Josefin Sans', sans-serif; font-size: 10px; font-weight: 300; letter-spacing: 0.2em; text-transform: uppercase; padding: 10px 20px; border: none; transform: translateY(14px) rotate(-1deg); transition: transform 0.35s 0.1s, background 0.2s; clip-path: polygon(0 0, 97% 0, 100% 30%, 100% 100%, 3% 100%, 0 70%); cursor: none; }
+  .card-btn { display: inline-flex; align-items: center; background: var(--linen); color: var(--ink); text-decoration: none; font-family: 'Josefin Sans', sans-serif; font-size: 10px; font-weight: 300; letter-spacing: 0.2em; text-transform: uppercase; padding: 10px 20px; border: none; transform: translateY(14px) rotate(-1deg); transition: transform 0.35s 0.1s, background 0.2s; clip-path: polygon(0 0, 97% 0, 100% 30%, 100% 100%, 3% 100%, 0 70%); cursor: none; }
   .art-card:hover .card-btn { transform: translateY(0) rotate(-1deg); }
   .card-btn:hover { background: var(--pale-blue) !important; transform: translateY(0) rotate(0.5deg) scale(1.03) !important; }
   .card-strip { padding: 16px 20px 20px; background: var(--linen); border-top: 1px solid var(--pale-blue); }
-  .strip-title { font-family: 'Cormorant Garamond', serif; font-size: 19px; font-style: italic; font-weight: 300; color: var(--deep); margin-bottom: 2px; }
+  .strip-title { font-family: 'Cormorant Garamond', serif; font-size: 18px; font-style: italic; font-weight: 300; color: var(--deep); margin-bottom: 2px; }
   .strip-meta { font-size: 11px; letter-spacing: 0.12em; color: var(--sage); text-transform: uppercase; }
-
-  /* CONTACT */
+  .coming-soon { padding: 60px 0 80px; grid-column: 1/-1; text-align: center; }
+  .coming-soon p { font-family: 'Cormorant Garamond', serif; font-size: 20px; font-style: italic; color: var(--slate); letter-spacing: 0.05em; }
   .contact { padding: 100px 40px; display: flex; flex-direction: column; align-items: center; text-align: center; background: var(--deep); color: var(--linen); }
   .contact-eyebrow { font-size: 10px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--sage); margin-bottom: 24px; }
   .contact-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(36px, 5vw, 64px); font-weight: 300; font-style: italic; color: var(--linen); margin-bottom: 16px; line-height: 1.1; }
   .contact-sub { font-size: 13px; letter-spacing: 0.1em; color: var(--sage); margin-bottom: 44px; max-width: 400px; line-height: 1.8; }
-  .contact-btn { display: inline-block; position: relative; font-family: 'Josefin Sans', sans-serif; font-size: 11px; font-weight: 100; letter-spacing: 0.3em; text-transform: uppercase; color: var(--ink); background: var(--linen); text-decoration: none; padding: 16px 36px; transition: transform 0.3s, background 0.2s; clip-path: polygon(4% 0%, 96% 0%, 100% 20%, 100% 80%, 96% 100%, 4% 100%, 0% 80%, 0% 20%); cursor: none; }
+  .contact-btn { display: inline-block; font-family: 'Josefin Sans', sans-serif; font-size: 11px; font-weight: 100; letter-spacing: 0.3em; text-transform: uppercase; color: var(--ink); background: var(--linen); text-decoration: none; padding: 16px 36px; transition: transform 0.3s, background 0.2s; clip-path: polygon(4% 0%, 96% 0%, 100% 20%, 100% 80%, 96% 100%, 4% 100%, 0% 80%, 0% 20%); cursor: none; }
   .contact-btn:hover { background: var(--pale-blue); transform: rotate(-1.5deg) scale(1.04); }
   .footer-sig { margin-top: 80px; font-family: 'Cormorant Garamond', serif; font-size: 13px; font-style: italic; color: var(--slate); letter-spacing: 0.08em; }
-
   .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.8s ease, transform 0.8s ease; }
   .reveal.visible { opacity: 1; transform: translateY(0); }
-
-  @media (max-width: 600px) {
-    nav { padding: 18px 20px; }
-    .hero { padding: 0 20px 40px; }
-    .intro, .gallery { padding-left: 20px; padding-right: 20px; }
-    .gallery-grid { grid-template-columns: 1fr; }
-    .contact { padding: 80px 20px; }
-  }
+  @media (max-width: 600px) { nav { padding: 18px 20px; } .hero { padding: 0 20px 40px; } .intro, .gallery { padding-left: 20px; padding-right: 20px; } .gallery-grid { grid-template-columns: 1fr; } .contact { padding: 80px 20px; } }
 </style>
 </head>
 <body>
@@ -171,143 +118,160 @@
   <p>Figure, memory, <em>material.</em> Work made by hand across paint, pastel, ink, and metal.</p>
 </div>
 
-<!-- ── PASTEL PORTRAITS ── -->
+<!-- PASTEL PORTRAITS -->
 <div class="medium-divider reveal">
-  <div class="medium-divider-bg" style="background-image: url('portrait.png')"></div>
+  <div class="medium-divider-bg" style="background-image:url('portrait.png')"></div>
   <div class="medium-divider-overlay">
     <div class="medium-divider-title">Pastel Portraits</div>
     <div class="medium-divider-sub">oil pastel on paper</div>
   </div>
 </div>
+<div class="gallery"><div class="gallery-grid">
 
-<div class="gallery">
-  <div class="gallery-grid">
+  <div class="art-card reveal"><img src="portrait.png" alt="East Asian Wise Woman">
+    <div class="card-overlay"><div class="card-title">East Asian Wise Woman</div><div class="card-meta">9″×12″ · Color Pastel · $50</div><a class="card-btn" href="mailto:rowanwolfson@gmail.com?subject=Inquiry%3A%20East%20Asian%20Wise%20Woman&body=Hi%20Rowan%2C%0A%0AI%27m%20interested%20in%20%22East%20Asian%20Wise%20Woman%22%20%28%2450%29.%0A%0APlease%20let%20me%20know%20how%20to%20proceed!">inquire to purchase</a></div>
+    <div class="card-strip"><div class="strip-title">East Asian Wise Woman</div><div class="strip-meta">Color Pastel · $50</div></div>
+  </div>
 
-    <div class="art-card reveal">
-      <img src="portrait.png" alt="East Asian Wise Woman">
-      <div class="card-overlay">
-        <div class="card-title">East Asian Wise Woman</div>
-        <div class="card-meta">9″ × 12″ · Color Pastel · $50</div>
-        <a class="card-btn" href="mailto:rowanwolfson@gmail.com?subject=Inquiry%3A%20East%20Asian%20Wise%20Woman&body=Hi%20Rowan%2C%0A%0AI%27m%20interested%20in%20%22East%20Asian%20Wise%20Woman%22%20%28%2450%29.%0A%0APlease%20let%20me%20know%20how%20to%20proceed!">inquire to purchase</a>
-      </div>
-      <div class="card-strip"><div class="strip-title">East Asian Wise Woman</div><div class="strip-meta">Color Pastel · $50</div></div>
-    </div>
+  <div class="art-card reveal"><img src="blue-reverie.png" alt="Blue Reverie">
+    <div class="card-overlay"><div class="card-title">Blue Reverie</div><div class="card-meta">9″×12″ · Oil Pastel · $50</div><a class="card-btn" href="mailto:rowanwolfson@gmail.com?subject=Inquiry%3A%20Blue%20Reverie&body=Hi%20Rowan%2C%0A%0AI%27m%20interested%20in%20%22Blue%20Reverie%22%20%28%2450%29.%0A%0APlease%20let%20me%20know%20how%20to%20proceed!">inquire to purchase</a></div>
+    <div class="card-strip"><div class="strip-title">Blue Reverie</div><div class="strip-meta">Oil Pastel · $50</div></div>
+  </div>
 
-    <div class="art-card reveal">
-      <img src="blue-reverie.png" alt="Blue Reverie">
-      <div class="card-overlay">
-        <div class="card-title">Blue Reverie</div>
-        <div class="card-meta">9″ × 12″ · Oil Pastel · $50</div>
-        <a class="card-btn" href="mailto:rowanwolfson@gmail.com?subject=Inquiry%3A%20Blue%20Reverie&body=Hi%20Rowan%2C%0A%0AI%27m%20interested%20in%20%22Blue%20Reverie%22%20%28%2450%29.%0A%0APlease%20let%20me%20know%20how%20to%20proceed!">inquire to purchase</a>
-      </div>
-      <div class="card-strip"><div class="strip-title">Blue Reverie</div><div class="strip-meta">Oil Pastel · $50</div></div>
-    </div>
+  <div class="art-card reveal"><img src="golden-laugh.png" alt="Golden Laugh">
+    <div class="card-overlay"><div class="card-title">Golden Laugh</div><div class="card-meta">9″×12″ · Oil Pastel · $50</div><a class="card-btn" href="mailto:rowanwolfson@gmail.com?subject=Inquiry%3A%20Golden%20Laugh&body=Hi%20Rowan%2C%0A%0AI%27m%20interested%20in%20%22Golden%20Laugh%22%20%28%2450%29.%0A%0APlease%20let%20me%20know%20how%20to%20proceed!">inquire to purchase</a></div>
+    <div class="card-strip"><div class="strip-title">Golden Laugh</div><div class="strip-meta">Oil Pastel · $50</div></div>
+  </div>
 
-    <div class="art-card reveal">
-      <img src="golden-laugh.png" alt="Golden Laugh">
-      <div class="card-overlay">
-        <div class="card-title">Golden Laugh</div>
-        <div class="card-meta">9″ × 12″ · Oil Pastel · $50</div>
-        <a class="card-btn" href="mailto:rowanwolfson@gmail.com?subject=Inquiry%3A%20Golden%20Laugh&body=Hi%20Rowan%2C%0A%0AI%27m%20interested%20in%20%22Golden%20Laugh%22%20%28%2450%29.%0A%0APlease%20let%20me%20know%20how%20to%20proceed!">inquire to purchase</a>
-      </div>
-      <div class="card-strip"><div class="strip-title">Golden Laugh</div><div class="strip-meta">Oil Pastel · $50</div></div>
-    </div>
+  <div class="art-card reveal"><img src="turning-away.png" alt="Turning Away">
+    <div class="card-overlay"><div class="card-title">Turning Away</div><div class="card-meta">9″×12″ · Oil Pastel · $50</div><a class="card-btn" href="mailto:rowanwolfson@gmail.com?subject=Inquiry%3A%20Turning%20Away&body=Hi%20Rowan%2C%0A%0AI%27m%20interested%20in%20%22Turning%20Away%22%20%28%2450%29.%0A%0APlease%20let%20me%20know%20how%20to%20proceed!">inquire to purchase</a></div>
+    <div class="card-strip"><div class="strip-title">Turning Away</div><div class="strip-meta">Oil Pastel · $50</div></div>
+  </div>
 
-    <div class="art-card reveal">
-      <img src="turning-away.png" alt="Turning Away">
-      <div class="card-overlay">
-        <div class="card-title">Turning Away</div>
-        <div class="card-meta">9″ × 12″ · Oil Pastel · $50</div>
-        <a class="card-btn" href="mailto:rowanwolfson@gmail.com?subject=Inquiry%3A%20Turning%20Away&body=Hi%20Rowan%2C%0A%0AI%27m%20interested%20in%20%22Turning%20Away%22%20%28%2450%29.%0A%0APlease%20let%20me%20know%20how%20to%20proceed!">inquire to purchase</a>
-      </div>
-      <div class="card-strip"><div class="strip-title">Turning Away</div><div class="strip-meta">Oil Pastel · $50</div></div>
-    </div>
+  <div class="art-card reveal"><img src="red-coat.png" alt="Red Coat">
+    <div class="card-overlay"><div class="card-title">Red Coat</div><div class="card-meta">9″×12″ · Oil Pastel · $50</div><a class="card-btn" href="mailto:rowanwolfson@gmail.com?subject=Inquiry%3A%20Red%20Coat&body=Hi%20Rowan%2C%0A%0AI%27m%20interested%20in%20%22Red%20Coat%22%20%28%2450%29.%0A%0APlease%20let%20me%20know%20how%20to%20proceed!">inquire to purchase</a></div>
+    <div class="card-strip"><div class="strip-title">Red Coat</div><div class="strip-meta">Oil Pastel · $50</div></div>
+  </div>
 
-    <div class="art-card reveal">
-      <img src="red-coat.png" alt="Red Coat">
-      <div class="card-overlay">
-        <div class="card-title">Red Coat</div>
-        <div class="card-meta">9″ × 12″ · Oil Pastel · $50</div>
-        <a class="card-btn" href="mailto:rowanwolfson@gmail.com?subject=Inquiry%3A%20Red%20Coat&body=Hi%20Rowan%2C%0A%0AI%27m%20interested%20in%20%22Red%20Coat%22%20%28%2450%29.%0A%0APlease%20let%20me%20know%20how%20to%20proceed!">inquire to purchase</a>
-      </div>
-      <div class="card-strip"><div class="strip-title">Red Coat</div><div class="strip-meta">Oil Pastel · $50</div></div>
-    </div>
+  <div class="art-card reveal"><img src="woman-in-red-hood.png" alt="Woman in Red Hood">
+    <div class="card-overlay"><div class="card-title">Woman in Red Hood</div><div class="card-meta">9″×12″ · Oil Pastel · $50</div><a class="card-btn" href="mailto:rowanwolfson@gmail.com?subject=Inquiry%3A%20Woman%20in%20Red%20Hood&body=Hi%20Rowan%2C%0A%0AI%27m%20interested%20in%20%22Woman%20in%20Red%20Hood%22%20%28%2450%29.%0A%0APlease%20let%20me%20know%20how%20to%20proceed!">inquire to purchase</a></div>
+    <div class="card-strip"><div class="strip-title">Woman in Red Hood</div><div class="strip-meta">Oil Pastel · $50</div></div>
+  </div>
 
-    <div class="art-card reveal">
-      <img src="woman-in-red-hood.png" alt="Woman in Red Hood">
-      <div class="card-overlay">
-        <div class="card-title">Woman in Red Hood</div>
-        <div class="card-meta">9″ × 12″ · Oil Pastel · $50</div>
-        <a class="card-btn" href="mailto:rowanwolfson@gmail.com?subject=Inquiry%3A%20Woman%20in%20Red%20Hood&body=Hi%20Rowan%2C%0A%0AI%27m%20interested%20in%20%22Woman%20in%20Red%20Hood%22%20%28%2450%29.%0A%0APlease%20let%20me%20know%20how%20to%20proceed!">inquire to purchase</a>
-      </div>
-      <div class="card-strip"><div class="strip-title">Woman in Red Hood</div><div class="strip-meta">Oil Pastel · $50</div></div>
-    </div>
+  <div class="art-card reveal"><img src="eyes-half-closed.png" alt="Eyes Half Closed">
+    <div class="card-overlay"><div class="card-title">Eyes Half Closed</div><div class="card-meta">9″×12″ · Oil Pastel · $50</div><a class="card-btn" href="mailto:rowanwolfson@gmail.com?subject=Inquiry%3A%20Eyes%20Half%20Closed&body=Hi%20Rowan%2C%0A%0AI%27m%20interested%20in%20%22Eyes%20Half%20Closed%22%20%28%2450%29.%0A%0APlease%20let%20me%20know%20how%20to%20proceed!">inquire to purchase</a></div>
+    <div class="card-strip"><div class="strip-title">Eyes Half Closed</div><div class="strip-meta">Oil Pastel · $50</div></div>
+  </div>
 
-    <div class="art-card reveal">
-      <img src="eyes-half-closed.png" alt="Eyes Half Closed">
-      <div class="card-overlay">
-        <div class="card-title">Eyes Half Closed</div>
-        <div class="card-meta">9″ × 12″ · Oil Pastel · $50</div>
-        <a class="card-btn" href="mailto:rowanwolfson@gmail.com?subject=Inquiry%3A%20Eyes%20Half%20Closed&body=Hi%20Rowan%2C%0A%0AI%27m%20interested%20in%20%22Eyes%20Half%20Closed%22%20%28%2450%29.%0A%0APlease%20let%20me%20know%20how%20to%20proceed!">inquire to purchase</a>
-      </div>
-      <div class="card-strip"><div class="strip-title">Eyes Half Closed</div><div class="strip-meta">Oil Pastel · $50</div></div>
-    </div>
+  <div class="art-card reveal"><img src="looking-up.png" alt="Looking Up">
+    <div class="card-overlay"><div class="card-title">Looking Up</div><div class="card-meta">9″×12″ · Oil Pastel · $50</div><a class="card-btn" href="mailto:rowanwolfson@gmail.com?subject=Inquiry%3A%20Looking%20Up&body=Hi%20Rowan%2C%0A%0AI%27m%20interested%20in%20%22Looking%20Up%22%20%28%2450%29.%0A%0APlease%20let%20me%20know%20how%20to%20proceed!">inquire to purchase</a></div>
+    <div class="card-strip"><div class="strip-title">Looking Up</div><div class="strip-meta">Oil Pastel · $50</div></div>
+  </div>
 
-    <div class="art-card reveal">
-      <img src="looking-up.png" alt="Looking Up">
-      <div class="card-overlay">
-        <div class="card-title">Looking Up</div>
-        <div class="card-meta">9″ × 12″ · Oil Pastel · $50</div>
-        <a class="card-btn" href="mailto:rowanwolfson@gmail.com?subject=Inquiry%3A%20Looking%20Up&body=Hi%20Rowan%2C%0A%0AI%27m%20interested%20in%20%22Looking%20Up%22%20%28%2450%29.%0A%0APlease%20let%20me%20know%20how%20to%20proceed!">inquire to purchase</a>
-      </div>
-      <div class="card-strip"><div class="strip-title">Looking Up</div><div class="strip-meta">Oil Pastel · $50</div></div>
-    </div>
+  <div class="art-card reveal"><img src="koi.jpg" alt="Koi">
+    <div class="card-overlay"><div class="card-title">Koi</div><div class="card-meta">24″×36″ · Oil Pastel · $260</div><a class="card-btn" href="mailto:rowanwolfson@gmail.com?subject=Inquiry%3A%20Koi&body=Hi%20Rowan%2C%0A%0AI%27m%20interested%20in%20%22Koi%22%20%28%24260%29.%0A%0APlease%20let%20me%20know%20how%20to%20proceed!">inquire to purchase</a></div>
+    <div class="card-strip"><div class="strip-title">Koi</div><div class="strip-meta">Oil Pastel · $260</div></div>
+  </div>
 
+</div></div>
+
+<!-- FIGURE DRAWINGS -->
+<div class="medium-divider reveal">
+  <div class="medium-divider-bg" style="background-image:url('figure-standing.jpg')"></div>
+  <div class="medium-divider-overlay">
+    <div class="medium-divider-title">Figure Drawings</div>
+    <div class="medium-divider-sub">charcoal & mixed media on paper</div>
   </div>
 </div>
+<div class="gallery"><div class="gallery-grid">
 
-<!-- ── INK & PEN ── -->
+  <div class="art-card reveal"><img src="figure-seated-i.jpg" alt="Seated Figure I">
+    <div class="card-overlay"><div class="card-title">Seated Figure I</div><div class="card-meta">9″×12″ · Charcoal & Pastel · $20</div><a class="card-btn" href="mailto:rowanwolfson@gmail.com?subject=Inquiry%3A%20Seated%20Figure%20I&body=Hi%20Rowan%2C%0A%0AI%27m%20interested%20in%20%22Seated%20Figure%20I%22%20%28%2420%29.%0A%0APlease%20let%20me%20know%20how%20to%20proceed!">inquire to purchase</a></div>
+    <div class="card-strip"><div class="strip-title">Seated Figure I</div><div class="strip-meta">Charcoal & Pastel · $20</div></div>
+  </div>
+
+  <div class="art-card reveal"><img src="figure-seated-ii.jpg" alt="Seated Figure II">
+    <div class="card-overlay"><div class="card-title">Seated Figure II</div><div class="card-meta">9″×12″ · Charcoal & Pastel · $20</div><a class="card-btn" href="mailto:rowanwolfson@gmail.com?subject=Inquiry%3A%20Seated%20Figure%20II&body=Hi%20Rowan%2C%0A%0AI%27m%20interested%20in%20%22Seated%20Figure%20II%22%20%28%2420%29.%0A%0APlease%20let%20me%20know%20how%20to%20proceed!">inquire to purchase</a></div>
+    <div class="card-strip"><div class="strip-title">Seated Figure II</div><div class="strip-meta">Charcoal & Pastel · $20</div></div>
+  </div>
+
+  <div class="art-card reveal"><img src="figure-standing.jpg" alt="Standing Figure">
+    <div class="card-overlay"><div class="card-title">Standing Figure</div><div class="card-meta">9″×12″ · Charcoal · $20</div><a class="card-btn" href="mailto:rowanwolfson@gmail.com?subject=Inquiry%3A%20Standing%20Figure&body=Hi%20Rowan%2C%0A%0AI%27m%20interested%20in%20%22Standing%20Figure%22%20%28%2420%29.%0A%0APlease%20let%20me%20know%20how%20to%20proceed!">inquire to purchase</a></div>
+    <div class="card-strip"><div class="strip-title">Standing Figure</div><div class="strip-meta">Charcoal · $20</div></div>
+  </div>
+
+  <div class="art-card reveal"><img src="figure-gesture.jpg" alt="Gesture Study">
+    <div class="card-overlay"><div class="card-title">Gesture Study</div><div class="card-meta">9″×12″ · Charcoal · $20</div><a class="card-btn" href="mailto:rowanwolfson@gmail.com?subject=Inquiry%3A%20Gesture%20Study&body=Hi%20Rowan%2C%0A%0AI%27m%20interested%20in%20%22Gesture%20Study%22%20%28%2420%29.%0A%0APlease%20let%20me%20know%20how%20to%20proceed!">inquire to purchase</a></div>
+    <div class="card-strip"><div class="strip-title">Gesture Study</div><div class="strip-meta">Charcoal · $20</div></div>
+  </div>
+
+</div></div>
+
+<!-- INK & PEN -->
 <div class="medium-divider reveal">
-  <div class="medium-divider-bg" style="background-image: url('dragon.png')"></div>
+  <div class="medium-divider-bg" style="background-image:url('dragon.png')"></div>
   <div class="medium-divider-overlay">
     <div class="medium-divider-title">Ink &amp; Pen</div>
     <div class="medium-divider-sub">pen on paper</div>
   </div>
 </div>
+<div class="gallery"><div class="gallery-grid">
 
-<div class="gallery">
-  <div class="gallery-grid">
+  <div class="art-card reveal"><img src="dragon.png" alt="Puff the Magic Dragon">
+    <div class="card-overlay"><div class="card-title">Puff the Magic Dragon</div><div class="card-meta">9″×12″ · Ink · $215</div><a class="card-btn" href="mailto:rowanwolfson@gmail.com?subject=Inquiry%3A%20Puff%20the%20Magic%20Dragon&body=Hi%20Rowan%2C%0A%0AI%27m%20interested%20in%20%22Puff%20the%20Magic%20Dragon%22%20%28%24215%29.%0A%0APlease%20let%20me%20know%20how%20to%20proceed!">inquire to purchase</a></div>
+    <div class="card-strip"><div class="strip-title">Puff the Magic Dragon</div><div class="strip-meta">Ink · $215</div></div>
+  </div>
 
-    <div class="art-card reveal">
-      <img src="dragon.png" alt="Puff the Magic Dragon">
-      <div class="card-overlay">
-        <div class="card-title">Puff the Magic Dragon</div>
-        <div class="card-meta">9″ × 12″ · Ink · $215</div>
-        <a class="card-btn" href="mailto:rowanwolfson@gmail.com?subject=Inquiry%3A%20Puff%20the%20Magic%20Dragon&body=Hi%20Rowan%2C%0A%0AI%27m%20interested%20in%20%22Puff%20the%20Magic%20Dragon%22%20%28%24215%29.%0A%0APlease%20let%20me%20know%20how%20to%20proceed!">inquire to purchase</a>
-      </div>
-      <div class="card-strip"><div class="strip-title">Puff the Magic Dragon</div><div class="strip-meta">Ink · $215</div></div>
-    </div>
+  <div class="art-card reveal"><img src="cyborg.jpg" alt="Cyborg">
+    <div class="card-overlay"><div class="card-title">Cyborg</div><div class="card-meta">40″×26″ · Pen on Paper · $450</div><a class="card-btn" href="mailto:rowanwolfson@gmail.com?subject=Inquiry%3A%20Cyborg&body=Hi%20Rowan%2C%0A%0AI%27m%20interested%20in%20%22Cyborg%22%20%28%24450%29.%0A%0APlease%20let%20me%20know%20how%20to%20proceed!">inquire to purchase</a></div>
+    <div class="card-strip"><div class="strip-title">Cyborg</div><div class="strip-meta">Pen on Paper · $450</div></div>
+  </div>
 
+  <div class="art-card reveal"><img src="farm-to-table.jpg" alt="Farm to Table">
+    <div class="card-overlay"><div class="card-title">Farm to Table</div><div class="card-meta">18″×12″ · Pen on Paper · $300</div><a class="card-btn" href="mailto:rowanwolfson@gmail.com?subject=Inquiry%3A%20Farm%20to%20Table&body=Hi%20Rowan%2C%0A%0AI%27m%20interested%20in%20%22Farm%20to%20Table%22%20%28%24300%29.%0A%0APlease%20let%20me%20know%20how%20to%20proceed!">inquire to purchase</a></div>
+    <div class="card-strip"><div class="strip-title">Farm to Table</div><div class="strip-meta">Pen on Paper · $300</div></div>
+  </div>
+
+</div></div>
+
+<!-- CERAMICS -->
+<div class="medium-divider reveal">
+  <div class="medium-divider-bg" style="background-image:url('snake-cup.jpg')"></div>
+  <div class="medium-divider-overlay">
+    <div class="medium-divider-title">Ceramics</div>
+    <div class="medium-divider-sub">wheel-thrown & hand-built</div>
   </div>
 </div>
+<div class="gallery"><div class="gallery-grid">
 
-<!-- ── SILVERSMITHING ── -->
+  <div class="art-card reveal"><img src="snake-cup.jpg" alt="Snake Cup">
+    <div class="card-overlay"><div class="card-title">Snake Cup</div><div class="card-meta">Ceramic · $45</div><a class="card-btn" href="mailto:rowanwolfson@gmail.com?subject=Inquiry%3A%20Snake%20Cup&body=Hi%20Rowan%2C%0A%0AI%27m%20interested%20in%20%22Snake%20Cup%22%20%28%2445%29.%0A%0APlease%20let%20me%20know%20how%20to%20proceed!">inquire to purchase</a></div>
+    <div class="card-strip"><div class="strip-title">Snake Cup</div><div class="strip-meta">Ceramic · $45</div></div>
+  </div>
+
+</div></div>
+
+<!-- SILVERSMITHING -->
 <div class="medium-divider reveal">
-  <div class="medium-divider-bg" style="background-image: url('portrait.png'); filter: saturate(0) brightness(0.5) sepia(0.4);"></div>
+  <div class="medium-divider-bg" style="background-image:url('necklace-turquoise.jpg'); filter: saturate(0.4) brightness(0.5);"></div>
   <div class="medium-divider-overlay">
     <div class="medium-divider-title">Silversmithing</div>
-    <div class="medium-divider-sub">metalwork</div>
+    <div class="medium-divider-sub">sterling silver & stone</div>
   </div>
 </div>
+<div class="gallery"><div class="gallery-grid">
 
-<div class="gallery">
-  <div class="gallery-grid">
-    <!-- add silversmithing pieces here when ready -->
-    <div style="padding: 60px 0 80px; grid-column: 1/-1; text-align: center;">
-      <p style="font-family: 'Cormorant Garamond', serif; font-size: 20px; font-style: italic; color: var(--slate); letter-spacing: 0.05em;">Works coming soon — inquire directly for available pieces.</p>
-    </div>
+  <div class="art-card reveal"><img src="necklace-turquoise.jpg" alt="Turquoise Orbit Necklace">
+    <div class="card-overlay"><div class="card-title">Turquoise Orbit Necklace</div><div class="card-meta">Sterling Silver & Turquoise · $60</div><a class="card-btn" href="mailto:rowanwolfson@gmail.com?subject=Inquiry%3A%20Turquoise%20Orbit%20Necklace&body=Hi%20Rowan%2C%0A%0AI%27m%20interested%20in%20the%20Turquoise%20Orbit%20Necklace%20%28%2460%29.%0A%0APlease%20let%20me%20know%20how%20to%20proceed!">inquire to purchase</a></div>
+    <div class="card-strip"><div class="strip-title">Turquoise Orbit Necklace</div><div class="strip-meta">Sterling Silver & Turquoise · $60</div></div>
   </div>
-</div>
+
+  <div class="art-card reveal"><img src="earrings-lapis.jpg" alt="Lapis Disc Earrings">
+    <div class="card-overlay"><div class="card-title">Lapis Disc Earrings</div><div class="card-meta">Hammered Silver & Lapis · $75</div><a class="card-btn" href="mailto:rowanwolfson@gmail.com?subject=Inquiry%3A%20Lapis%20Disc%20Earrings&body=Hi%20Rowan%2C%0A%0AI%27m%20interested%20in%20the%20Lapis%20Disc%20Earrings%20%28%2475%29.%0A%0APlease%20let%20me%20know%20how%20to%20proceed!">inquire to purchase</a></div>
+    <div class="card-strip"><div class="strip-title">Lapis Disc Earrings</div><div class="strip-meta">Hammered Silver & Lapis · $75</div></div>
+  </div>
+
+</div></div>
 
 <!-- CONTACT -->
 <section class="contact" id="contact">
@@ -320,60 +284,43 @@
 
 <script>
   const daisy = document.getElementById('daisy-cursor');
-  let mx = -100, my = -100;
   document.addEventListener('mousemove', e => {
-    mx = e.clientX; my = e.clientY;
-    daisy.style.left = mx + 'px';
-    daisy.style.top = my + 'px';
-    const el = document.elementFromPoint(mx, my);
+    daisy.style.left = e.clientX + 'px';
+    daisy.style.top = e.clientY + 'px';
+    const el = document.elementFromPoint(e.clientX, e.clientY);
     if (el) {
       const bg = window.getComputedStyle(el).backgroundColor;
       const match = bg.match(/\d+/g);
       if (match) {
-        const [r, g, b] = match.map(Number);
-        const brightness = (r * 299 + g * 587 + b * 114) / 1000;
-        daisy.classList.toggle('pink', brightness > 200);
+        const [r,g,b] = match.map(Number);
+        daisy.classList.toggle('pink', (r*299+g*587+b*114)/1000 > 200);
       }
     }
   });
-
   const petalColors = ['#ffb7c5','#ffd6e0','#ffaec9','#f9c6d0','#c9b1ff','#b5d8ff','#a8e6cf','#ffd3b6','#fff0a0','#f7c5e3','#d4f0c0','#c5e8ff','#ffcba4','#e8c5ff','#b8f0e0'];
-  function spawnPetals(x, y) {
-    for (let i = 0; i < 18; i++) {
-      const petal = document.createElement('div');
-      petal.className = 'petal';
-      const angle = (i / 18) * 360 + Math.random() * 20;
-      const dist = 60 + Math.random() * 80;
-      const rad = angle * Math.PI / 180;
-      const tx = Math.cos(rad) * dist;
-      const ty = Math.sin(rad) * dist;
-      petal.style.cssText = `left:${x}px;top:${y}px;background:${petalColors[Math.floor(Math.random()*petalColors.length)]};--r:${angle}deg;--tx:${tx}px;--ty:${ty}px;transform-origin:center bottom;margin-left:-5px;margin-top:-8px;`;
-      document.body.appendChild(petal);
-      setTimeout(() => petal.remove(), 950);
+  document.addEventListener('click', e => {
+    for (let i=0;i<18;i++) {
+      const p = document.createElement('div'); p.className='petal';
+      const angle=(i/18)*360+Math.random()*20, dist=60+Math.random()*80, rad=angle*Math.PI/180;
+      p.style.cssText=`left:${e.clientX}px;top:${e.clientY}px;background:${petalColors[Math.floor(Math.random()*petalColors.length)]};--r:${angle}deg;--tx:${Math.cos(rad)*dist}px;--ty:${Math.sin(rad)*dist}px;transform-origin:center bottom;margin-left:-5px;margin-top:-8px;`;
+      document.body.appendChild(p); setTimeout(()=>p.remove(),950);
     }
-    daisy.classList.add('click');
-    setTimeout(() => daisy.classList.remove('click'), 200);
-  }
-  document.addEventListener('click', e => spawnPetals(e.clientX, e.clientY));
-
+    daisy.classList.add('click'); setTimeout(()=>daisy.classList.remove('click'),200);
+  });
   const nav = document.getElementById('nav');
-  window.addEventListener('scroll', () => { nav.classList.toggle('scrolled', window.scrollY > 80); });
+  window.addEventListener('scroll',()=>nav.classList.toggle('scrolled',window.scrollY>80));
   document.getElementById('heroBg').classList.add('loaded');
-
-  const dividerBgs = document.querySelectorAll('.medium-divider-bg');
-  window.addEventListener('scroll', () => {
-    dividerBgs.forEach(bg => {
-      const rect = bg.parentElement.getBoundingClientRect();
-      const progress = (window.innerHeight - rect.top) / (window.innerHeight + rect.height);
-      bg.style.transform = `translateY(${(progress - 0.5) * 60}px)`;
+  document.querySelectorAll('.medium-divider-bg').forEach(bg=>{
+    window.addEventListener('scroll',()=>{
+      const rect=bg.parentElement.getBoundingClientRect();
+      const p=(window.innerHeight-rect.top)/(window.innerHeight+rect.height);
+      bg.style.transform=`translateY(${(p-0.5)*60}px)`;
     });
   });
-
-  const reveals = document.querySelectorAll('.reveal');
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(e => { if (e.isIntersecting) { setTimeout(() => e.target.classList.add('visible'), 80); observer.unobserve(e.target); } });
-  }, { threshold: 0.1 });
-  reveals.forEach(el => observer.observe(el));
+  const observer = new IntersectionObserver(entries=>{
+    entries.forEach(e=>{if(e.isIntersecting){setTimeout(()=>e.target.classList.add('visible'),80);observer.unobserve(e.target);}});
+  },{threshold:0.1});
+  document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
 </script>
 </body>
 </html>
